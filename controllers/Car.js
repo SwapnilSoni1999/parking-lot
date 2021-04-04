@@ -1,3 +1,4 @@
+const { FieldRequired } = require('../lib/error')
 const parkingLot = require('../services/parkingLot')
 
 class Car {
@@ -17,6 +18,19 @@ class Car {
         const { slotId } = req.params
         parkingLot.unpark(slotId)
         return res.json({ message: "Unparked car!" })
+    }
+
+    static async getInfo(req, res, next) {
+        const { car_number, slot_number } = req.query
+        if (!car_number && !slot_number) {
+            throw new FieldRequired('Either car_number or slot_number is required!')
+        }
+
+        if (slot_number) {
+            const carInfo = parkingLot.getInfoBySlotId(slot_number)
+            return res.json({ message: "Fetched car info!", ...carInfo })
+        }
+
     }
 }
 
