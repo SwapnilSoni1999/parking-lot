@@ -16,7 +16,7 @@ const errorController = (err, _, res, _next) => {
     }
 
     if (err instanceof EmptySlot) {
-        return res.status(204).json({ message: err.message, type: err.name })
+        return res.status(410).json({ message: err.message, type: err.name })
     }
 
     if (err instanceof AlreadyParked) {
