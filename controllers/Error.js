@@ -1,6 +1,8 @@
 const { ValidationError, NoParkingSlot, NotFoundError } = require("../lib/error")
 
 const errorController = (err, _, res, _next) => {
+    console.error(err)
+    
     if (err instanceof ValidationError) {
         return res.status(422).json({ message: err.message, type: err.name })
     }
