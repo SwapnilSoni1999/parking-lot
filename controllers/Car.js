@@ -51,7 +51,7 @@ class Car {
         if(!parkingLot.isSpaceAvailable(slot_number)) {
             throw new NoParkingSlot('Space already occupied!')
         } else {
-            parkingLot.unpark(slot_number)
+            parkingLot.unpark(null, car_number)
             const parkedData = parkingLot.park(car_number, slot_number)
             return res.json({ message: "Moved car!", ...parkedData })
         }
