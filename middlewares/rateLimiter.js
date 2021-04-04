@@ -1,12 +1,9 @@
+const getUnixNow = require('../utils/unixNow')
+
 /**
  * Memory storage to track ip addreses
  */
 const memory = []
-
-/**
- * @returns current unix timestamp
- */
-const getUnixNow = () => Math.floor(Date.now()/1000)
 
 /**
  * Returns remaining cooldown time when rate is limited.
