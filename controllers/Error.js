@@ -1,4 +1,4 @@
-const { ValidationError, NoParkingSlot, NotFoundError, EmptySlot } = require("../lib/error")
+const { ValidationError, NoParkingSlot, NotFoundError, EmptySlot, AlreadyParked } = require("../lib/error")
 
 const errorController = (err, _, res, _next) => {
     console.error(err)
@@ -17,6 +17,10 @@ const errorController = (err, _, res, _next) => {
 
     if (err instanceof EmptySlot) {
         return res.status(204).json({ message: err.message, type: err.name })
+    }
+
+    if (err instanceof AlreadyParked) {
+        return res.status(409).json({ message: err.message, slotId: err.slotId, type: err.name })
     }
 
     return res.status(500).json({ message: "Internal server error!" })
