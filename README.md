@@ -50,6 +50,11 @@ docker build -t parking .
 | /api/v1/unpark/{slot_id} | DELETE | None                 | { message }             | None |
 | /api/v1/get-info    | GET | Query: `?slot_number=` or `?car_number=` or both | { slot_id, car_number } | Either one of the query param is required |
 
+## Additional Features
+|       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |
+| ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- |
+| /api/v1/move       | POST   | { car_number, slot_id }    | { slot_id, car_number } | `car_number` must be parked first, `slot_id` should be empty |
+
 
 ## Project Structure
 
