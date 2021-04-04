@@ -8,6 +8,12 @@ const rateLimiter = require('./middlewares/rateLimiter')
 const app = express()
 
 /**
+ * Constants
+ */
+const DEFAULT_RATE_LIMIT = 10 // Requests
+const DEFAULT_RATE_LIMIT_COOLDOWN = 10 // seconds
+
+/**
  * Essential Express middlewares
  */
 app.use(express.urlencoded({ extended: false }))
@@ -17,7 +23,7 @@ app.use(express.json())
  * Rate Limiter
  */
 if (process.env.NODE_ENV !== 'testing') {
-    app.use(rateLimiter(10, 10))
+    app.use(rateLimiter(DEFAULT_RATE_LIMIT, DEFAULT_RATE_LIMIT_COOLDOWN))
 }
 
 /**
