@@ -6,7 +6,7 @@ const catchAsync = require('../../../utils/catchAsync')
 const router = Router()
 
 router.route('/park').post(catchAsync(Car.park))
-router.route('/unpark').delete(catchAsync(Car.unpark))
+router.route('/unpark/:slotId').delete(catchAsync(Car.unpark))
 router.route('/get-info').get(catchAsync(Car.getInfo))
 
 module.exports = router
