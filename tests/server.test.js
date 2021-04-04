@@ -20,14 +20,17 @@ test('Generate car data', () => {
     }
 })
 
+const parked = []
+
 test('Park cars', async () => {
     for (const carId of cars) {
         const res = await request
             .post('/api/v1/park')
             .send({ car_number: carId })
         expect(res.status).toEqual(200)
-        expect(res.body).toHaveProperty('slotId')
-        expect(res.body.carName).toEqual(carId)
+        expect(res.body).toHaveProperty('slot_id')
+        expect(res.body.car_number).toEqual(carId)
+        parked.push(res.body.slot_id)
     }
 })
 
@@ -40,18 +43,50 @@ test('Check overflow', async () => {
     expect(res.body.type).toBe('NoParkingSlotError')
 })
 
-test('Check occupied', async () => {
-    let skipFirst = true
-    for (const carId of cars) {
-        if (skipFirst) {
-            skipFirst = false
-            continue
-        }
+test('Get Info of parked cars by slot id', async () => {
+    for (const slotId of parked) {
         const res = await request
-            .post('/api/v1/park')
-            .send({ car_number: carId })
-        expect(res.status).toEqual(409)
-        expect(res.body.type).toBe('AlreadyParkedError')
-        expect(res.body).toHaveProperty('slotId')
+            .get('/api/v1/get-info')
+            .query({ slot_number: slotId })
+        expect(res.status).toEqual(200)
+        expect(res.body).toHaveProperty('slot_id')
+        expect(res.body.slot_id).toEqual(slotId)
+        expect(res.body).toHaveProperty('car_number')
     }
 })
+
+test('Get Info of parked cars by car number', async () => {
+    for (const car_number of cars) {
+        const res = await request
+            .get('/api/v1/get-info')
+            .query({ car_number })
+        expect(res.status).toEqual(200)
+        expect(res.body).toHaveProperty('slot_id')
+        expect(res.body).toHaveProperty('car_number')
+        expect(res.body.car_number).toEqual(car_number)
+    }
+})
+
+test('Unpark all', async () => {
+    for (const slotId of parked) {
+        const res = await request
+            .delete(`/api/v1/unpark/${slotId.toString()}`)
+        expect(res.status).toEqual(200)
+    }
+})
+
+// test('Check occupied', async () => {
+//     let skipFirst = true
+//     for (const carId of cars) {
+//         if (skipFirst) {
+//             skipFirst = false
+//             continue
+//         }
+//         const res = await request
+//             .post('/api/v1/park')
+//             .send({ car_number: carId })
+//         expect(res.status).toEqual(409)
+//         expect(res.body.type).toBe('AlreadyParkedError')
+//         expect(res.body).toHaveProperty('slotId')
+//     }
+// })
