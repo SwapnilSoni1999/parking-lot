@@ -1,4 +1,4 @@
-require('dotenv')
+require('dotenv').config()
 
 if (!process.env.PARKING_LOT_SIZE) {
     throw new Error(`PARKING_LOT_SIZE is not defined! Please define from .env`)
