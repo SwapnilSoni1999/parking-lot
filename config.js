@@ -1,3 +1,7 @@
+/**
+ * @file config.js
+ * Loads .env file and checks for required variables
+ */
 require('dotenv').config()
 
 if (!process.env.PARKING_LOT_SIZE) {

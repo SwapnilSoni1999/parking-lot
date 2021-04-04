@@ -1,11 +1,13 @@
 const { FieldRequired } = require('../lib/error')
 const parkingLot = require('../services/parkingLot')
 
+/**
+ * Express: Park Route Controller
+ * @class Car
+ */
 class Car {
     /**
-     * Express: Park Route Controller
-     * @param {Express.Request} req 
-     * @param {Express.Response} res
+     * To park car by car_number
      */
     static async park(req, res, next) {
         // ref: carName
@@ -14,12 +16,18 @@ class Car {
         return res.json({ message: "Parked car!", ...parkedData })
     }
 
+    /**
+     * Unpark car by slot id
+     */
     static async unpark(req, res, next) {
         const { slotId } = req.params
         parkingLot.unpark(slotId)
         return res.json({ message: "Unparked car!" })
     }
 
+    /**
+     * get car information such as car number and slot id by providing either or both values
+     */
     static async getInfo(req, res, next) {
         const { car_number, slot_number } = req.query
         if (!car_number && !slot_number) {

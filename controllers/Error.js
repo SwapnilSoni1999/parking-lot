@@ -1,5 +1,9 @@
 const { ValidationError, NoParkingSlot, NotFoundError, EmptySlot, AlreadyParked } = require("../lib/error")
 
+/**
+ * Global Error handler for Express
+ * @function
+ */
 const errorController = (err, _, res, _next) => {
     if (err instanceof ValidationError) {
         return res.status(422).json({ message: err.message, type: err.name })
