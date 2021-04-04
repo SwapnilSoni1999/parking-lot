@@ -31,6 +31,11 @@ class Car {
             return res.json({ message: "Fetched car info!", ...carInfo })
         }
 
+        if (car_number) {
+            const carInfo = parkingLot.getInfoByCarNumber(car_number)
+            return res.json({ message: "Fetched car info!", ...carInfo })
+        }
+
     }
 }
 
