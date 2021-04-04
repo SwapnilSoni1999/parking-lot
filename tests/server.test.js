@@ -75,18 +75,19 @@ test('Unpark all', async () => {
     }
 })
 
-// test('Check occupied', async () => {
-//     let skipFirst = true
-//     for (const carId of cars) {
-//         if (skipFirst) {
-//             skipFirst = false
-//             continue
-//         }
-//         const res = await request
-//             .post('/api/v1/park')
-//             .send({ car_number: carId })
-//         expect(res.status).toEqual(409)
-//         expect(res.body.type).toBe('AlreadyParkedError')
-//         expect(res.body).toHaveProperty('slotId')
-//     }
-// })
+test('Moving randomly', async () => {
+    const carId = generateCarIds(6)
+    const res = await request
+        .post('/api/v1/park')
+        .send({ car_number: carId })
+    expect(res.status).toEqual(200)
+    let newSlot = res.body.slot_id + 1
+    if (newSlot >= process.env.PARKING_LOT_SIZE) {
+        newSlot -= 3
+    }
+    const res2 = await request
+        .post('/api/v1/move')
+        .send({ car_number: carId, slot_number: newSlot })
+    expect(res2.status).toEqual(200)
+    expect(res2.body.slot_id).toEqual(newSlot)
+})
