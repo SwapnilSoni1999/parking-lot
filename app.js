@@ -5,7 +5,7 @@ const routes = require('./routes')
 const errorController = require('./controllers/Error')
 
 const app = express()
-const PORT = 3000
+const PORT = 8080
 
 app.use('/api', routes)
 
