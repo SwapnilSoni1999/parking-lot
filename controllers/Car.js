@@ -1,4 +1,4 @@
-const { FieldRequired } = require('../lib/error')
+const { FieldRequired, NoParkingSlot } = require('../lib/error')
 const parkingLot = require('../services/parkingLot')
 
 /**
@@ -44,6 +44,17 @@ class Car {
             return res.json({ message: "Fetched car info!", ...carInfo })
         }
 
+    }
+
+    static async moveTo(req, res, next) {
+        const { car_number, slot_number } = req.body
+        if(!parkingLot.isSpaceAvailable(slot_number)) {
+            throw new NoParkingSlot('Space already occupied!')
+        } else {
+            parkingLot.unpark(slot_number)
+            const parkedData = parkingLot.park(car_number, slot_number)
+            return res.json({ message: "Moved car!", ...parkedData })
+        }
     }
 }
 
