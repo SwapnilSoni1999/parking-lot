@@ -21,7 +21,6 @@ const getRemainingTime = (per, firstReqTime) => Math.abs(getUnixNow() - (firstRe
  */
 const rateLimiter = (limit=10, per=10) => {
     return async (req, res, next) => {
-        console.log(memory)
         const ip = req.ip
         const existingIp = memory.findIndex(v => v.ip === ip)
         if (existingIp !== -1) {
