@@ -12,4 +12,8 @@ if (!process.env.PARKING_LOT_SIZE < 0) {
     throw new Error(`PARKING_LOT_SIZE must be greater than 0.`)
 }
 
+if (process.env.NODE_ENV === 'testing') {
+    console.info('In testing environment. No RateLimit is applied.')
+}
+
 console.info('Loaded config!')

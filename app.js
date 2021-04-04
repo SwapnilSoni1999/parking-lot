@@ -3,6 +3,7 @@ const express = require('express')
 
 const routes = require('./routes')
 const errorController = require('./controllers/Error')
+const rateLimiter = require('./middlewares/rateLimiter')
 
 const app = express()
 
@@ -11,6 +12,13 @@ const app = express()
  */
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+/**
+ * Rate Limiter
+ */
+if (process.env.NODE_ENV !== 'testing') {
+    app.use(rateLimiter(10, 10))
+}
 
 /**
  * Registered api routes

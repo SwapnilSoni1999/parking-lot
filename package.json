@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest"
+    "test": "NODE_ENV=testing jest"
   },
   "author": "Swapnil Soni",
   "license": "ISC",
