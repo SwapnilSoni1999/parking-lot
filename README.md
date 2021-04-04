@@ -42,7 +42,7 @@
 docker build -t parking .
 ```
 
-## API Endpoints
+# API Endpoints
 
 |       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |
 | ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- |
@@ -50,13 +50,13 @@ docker build -t parking .
 | /api/v1/unpark/{slot_id} | DELETE | None                 | { message }             | None |
 | /api/v1/get-info    | GET | Query: `?slot_number=` or `?car_number=` or both | { slot_id, car_number } | Either one of the query param is required |
 
-## Additional Features
+# Additional Features
 |       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |
 | ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- |
 | /api/v1/move       | POST   | { car_number, slot_id }    | { slot_id, car_number } | `car_number` must be parked first, `slot_id` should be empty |
 
 
-## Project Structure
+# Project Structure
 
 - **app.js** - Main express app initialization
 - **server.js** - Spins the server
@@ -83,5 +83,5 @@ docker build -t parking .
 - **.env** - Environment variables to use throughout the server
 - **routes.js** - Indexes all routes which are used in api
 
-## Author
+# Author
 Swapnil Soni (@SwapnilSoni1999) for Nas Academy Hackathon.
