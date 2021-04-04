@@ -83,5 +83,7 @@ docker build -t parking .
 - **.env** - Environment variables to use throughout the server
 - **routes.js** - Indexes all routes which are used in api
 
+# Additional 
+- A postman requests collection is provided with the filename `ParkingLot.postman_collection.json`
 # Author
 Swapnil Soni (@SwapnilSoni1999) for Nas Academy Hackathon.
