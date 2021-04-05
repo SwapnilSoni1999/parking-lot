@@ -73,7 +73,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/park/3",
+					"raw": "http://localhost:8080/api/v1/unpark/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -82,7 +82,7 @@
 					"path": [
 						"api",
 						"v1",
-						"park",
+						"unpark",
 						"3"
 					]
 				}
