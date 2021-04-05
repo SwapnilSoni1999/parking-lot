@@ -69,6 +69,9 @@ docker build -t parking .
     - **Validators.js** - Validation lib to use across the project
     = **error.js** - API specific error classes and definitions
 
+- **middlewares**
+    - **rateLimiter.js** - RateLimit Implementation to block requests after specific time on a defined number of requests
+
 - **routes**
     - **v1/car** - route definitions to access api and connects them to controllers
 
