@@ -44,16 +44,16 @@ docker build -t parking .
 
 # API Endpoints
 
-|       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |
-| ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- |
-| /api/v1/park        | POST   | { car_number: "A553" }    | { slot_id, car_number } | `car_number` must have first letter as alphabet and all uppercase |
-| /api/v1/unpark/{slot_id} | DELETE | None                 | { message }             | None |
-| /api/v1/get-info    | GET | Query: `?slot_number=` or `?car_number=` or both | { slot_id, car_number } | Either one of the query param is required |
+|       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |  Description | 
+| ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- | ------------ |
+| /api/v1/park        | POST   | { car_number: "A553" }    | { slot_id, car_number } | `car_number` must have first letter as alphabet and all uppercase | Parks the car |
+| /api/v1/unpark/{slot_id} | DELETE | None                 | { message }             | None | Unparks/Removes the car from given slot |
+| /api/v1/get-info    | GET | Query: `?slot_number=` or `?car_number=` or both | { slot_id, car_number } | Either one of the query param is required | Retrieves info about parked car |
 
 # Additional Features
-|       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          |
-| ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- |
-| /api/v1/move       | POST   | { car_number, slot_id }    | { slot_id, car_number } | `car_number` must be parked first, `slot_id` should be empty |
+|       Endpoint      | Method |          Payload          |         Response        |                             Requirements                          | Description |
+| ------------------- | ------ | ------------------------- | ----------------------- | ----------------------------------------------------------------- | ----------- |
+| /api/v1/move       | POST   | { car_number, slot_id }    | { slot_id, car_number } | `car_number` must be parked first, `slot_id` should be empty | Moves car from origin slot to other empty slot |
 
 
 # Project Structure
