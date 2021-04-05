@@ -56,6 +56,11 @@
 						{
 							"key": "slot_number",
 							"value": "8"
+						},
+						{
+							"key": "car_number",
+							"value": "ABC",
+							"disabled": true
 						}
 					]
 				}
@@ -91,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \n}",
+					"raw": "{\n    \"car_number\": \"ABC\",\n    \"slot_number\": 9\n}",
 					"options": {
 						"raw": {
 							"language": "json"
